@@ -1,0 +1,55 @@
+﻿@model ListViewModel
+
+<div class="row">
+  <div class="col-8 text-center mx-auto">
+    <span style="font-weight:bold" id="sTotalSpot">Total spots: @ViewBag.TotalSpot</span>
+  </div>
+  <div class="col-8 text-center mx-auto">  
+    <span style="font-weight:bold" id="sHourlyFee">Hourly Fee: $@ViewBag.HourlyFee</span>
+  </div>
+ </div>
+
+<div class="row">
+  <div class="col-8 text-center p-4 mx-auto">
+    <div><span style="font-weight:bold" id="sAvailableSpot">Available spots: @Convert.ToInt32(ViewBag.TotalSpot - Model.SpotTaken) </span></div>
+    <br />
+    <table class="table table-sm table-bordered" style="background-color:#8af99b;border-color:#808080">
+      <thead>
+        <tr>
+          <th>
+            <label>Tag Number</label>
+          </th>
+          <th>
+            <label>In</label>
+          </th>
+          <th>
+            <label>Elasped Time</label>
+          </th> 
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model.ParkIns!)
+        {
+          <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @{
+                    TimeSpan diff = DateTime.Now.Subtract(item.CheckIn);
+                }
+                <label> @Math.Floor(diff.TotalHours) hours</label>
+              </td>          
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="text-end"><span style="margin-right:30px;font-weight:bold" id="sSpotToken">Spots taken: @Model.SpotTaken</span></div>
+  </div>
+</div>
+
+
+

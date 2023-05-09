@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var baseUrl = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Context.Request.PathBase);
+}
+
+@await Html.PartialAsync("/Views/Parking/Index.cshtml")
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");    
+        <script src="~/js/parking.min.js"></script>
+        <script>
+          $(document).ready(function () {
+
+              var btnIn = document.getElementById('btnIn');
+              btnIn.addEventListener('click', parking.In);
+
+              var btnOut = document.getElementById('btnOut');
+              btnOut.addEventListener('click', parking.Out);
+
+              var btnStats = document.getElementById('btnModal');
+              btnStats.addEventListener('click', parking.Stats);
+
+              document.getElementById("TagNumber").focus();
+             
+          });
+
+          let baseUrl = '@baseUrl';
+
+        </script>
+    }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+﻿@model StatsViewModel
+
+<div class="row">
+  <div class="col-12 text-center">
+    <table class="table table-bordered" style="background-color:#8af99b;border-color:#808080">
+      <tbody>
+        <tr>
+          <td class="w-75">
+            Number of spots available
+          </td>
+          <td>
+             @Model.AvailableSpot
+          </td>
+        </tr>
+        <tr>
+          <td class="w-75">
+            Today’s revenue
+          </td>
+          <td>
+            @Model.TodayRevenue
+          </td>
+        </tr>
+        <tr>
+          <td class="w-75">
+            Average number of cars per day (Past 30 days)
+          </td>
+          <td>
+            @Model.AverageCarPerDay
+          </td>
+        </tr>
+        <tr>
+          <td class="w-75">
+            Average revenue per day (Past 30 days)
+          </td>
+          <td>
+            @Model.AverageRevenuePerDay
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

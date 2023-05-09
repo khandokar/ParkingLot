@@ -1,0 +1,47 @@
+﻿@using ApplicationCore.Enums;
+@model InOutViewModel
+
+<form id="frmInOut" method="post">
+  <div class="row">
+    <div class="col-sm-7 mx-auto">
+            @Html.LabelFor(m=>m.TagNumber, new { @class = "form-label"})
+
+            @if (ViewBag.DisabledTagNumber != null && Convert.ToBoolean(ViewBag.DisabledTagNumber) == true)
+            {
+                @Html.TextBoxFor(m=>m.TagNumber, new { @class = "form-control", @disabled = "disabled"})
+            }
+            else
+            {
+                @Html.TextBoxFor(m=>m.TagNumber, new { @class = "form-control"})
+            }
+            @Html.ValidationMessageFor(model => model.TagNumber, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m=>m.Type)
+    </div>
+  </div>
+    @if (Model.Type == InOutType.OutValidated)
+    {
+      <div class="row">
+        <div class="col-sm-7 mx-auto">
+          <div class="row">
+            <div class="col-sm-6">
+                @Html.LabelFor(m=>m.Total, new { @class = "form-label"})
+                @Html.TextBoxFor(m=>m.Total, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                @Html.LabelFor(m=>m.ElaspedTime, new { @class = "form-label"})
+                @Html.TextBoxFor(m=>m.ElaspedTime, new { @class = "form-control", disabled = "disabled"})
+            </div>
+            <div class="col-sm-2">
+                @Html.Label(" ", "Reset", new { @class = "form-label"})
+              <button class="form-control" onClick="parking.Reset()" type="button">X</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    }
+</form>
+
+
+
