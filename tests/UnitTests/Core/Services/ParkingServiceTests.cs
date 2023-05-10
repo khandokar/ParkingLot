@@ -60,10 +60,12 @@ namespace UnitTests.Core.Services
             service = new ParkingService(parkInRepository.Object, parkOutRepository.Object, commonRepository.Object, parkInByTagNameSpecification.Object);
 
             // Act
-            bool result = await service.CheckOut("02201019", 15, 50);
+
+            Exception? ex = NUnit.Framework.Assert.ThrowsAsync<Exception>(async () => await service.CheckOut("02201019", 15, 50));
 
             // Assert
-            NUnit.Framework.Assert.IsFalse(result);
+
+            NUnit.Framework.Assert.That(ex?.Message, Is.EqualTo("Car with this Tag number Not Found."));
 
         }
 

@@ -53,30 +53,30 @@ namespace ApplicationCore.Services
             {
                 ParkIn parkIn = await ParkInByTagNumber(tagNumber);
 
-                if (parkIn != null)
+                if (parkIn == null)
                 {
-                    ParkOut parkOut = new ParkOut(tagNumber, parkIn.CheckIn, DateTime.Now, hourlyFee, total);
-
-                    dbManager.OpenTransaction();
-
-                    try
-                    {
-                        await parkInRepository.DeleteAsync(parkIn);
-
-                        await parkOutRepository.AddAsync(parkOut);
-
-                        dbManager.CommitTransaction();
-                    }
-                    catch(Exception)
-                    {
-                        dbManager.RollbackTransaction();
-                        throw;
-                    }
-
-                    return true;
+                    throw new Exception("Car with this Tag number Not Found.");
                 }
-               
-                return false; 
+
+                ParkOut parkOut = new ParkOut(tagNumber, parkIn.CheckIn, DateTime.Now, hourlyFee, total);
+
+                dbManager.OpenTransaction();
+
+                try
+                {
+                    await parkInRepository.DeleteAsync(parkIn);
+
+                    await parkOutRepository.AddAsync(parkOut);
+
+                    dbManager.CommitTransaction();
+                }
+                catch (Exception)
+                {
+                    dbManager.RollbackTransaction();
+                    throw;
+                }
+
+                return true;
             }
             catch (Exception)
             {
