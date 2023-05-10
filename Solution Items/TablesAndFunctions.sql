@@ -54,8 +54,6 @@ BEGIN
 	END
 	ELSE IF(DATEDIFF(MINUTE, @fromDate, @Todate) >= 60)
 	BEGIN
-	  -- SET @hours = round(CONCAT(DATEDIFF(MINUTE, @fromDate, @todate)/60, '.', DATEDIFF(MINUTE, @fromDate, @todate)%60),2);
-	  -- SET @hours = round(DATEDIFF(MINUTE, @fromDate, @todate)/60.00,2); 
 	  SET @hours = round(DATEDIFF(MINUTE, @fromDate, @todate)/60 + DATEDIFF(MINUTE, @fromDate, @todate)%60/100.0,2);
 	END
 	ELSE
