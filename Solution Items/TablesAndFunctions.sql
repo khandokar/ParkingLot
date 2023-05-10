@@ -1,4 +1,7 @@
+CREATE DATABASE PMS; 
+GO
 
+USE [PMS];
 -- ParkIn Table
 CREATE TABLE [dbo].[ParkIn](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -15,6 +18,7 @@ CREATE TABLE [dbo].[ParkIn](
 ) ON [PRIMARY]
 GO
 
+USE [PMS];
 -- ParkOut Table
 CREATE TABLE [dbo].[ParkOut](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
@@ -61,4 +65,4 @@ BEGIN
 
     RETURN @hours;
 END;
-
+GO
