@@ -5,7 +5,7 @@
 3. Run the sql script in Sql Server and Change the connection string in appsettings under Parking.UI project.
 4. In Visual Studio, Mark Parking.UI project as startup project and Run it.
 5. For UnitTests and PlaywrightTests, NUit is used here in this project.
-6. In order to run PlaywrightTests, Parking.UI need to publish(in IIS/docker) and update the url in Setup method of PageTest classes.
-7. PlaywrightTests can run from Test Explorer in visual studio or Windows Powershell
+6. In order to run PlaywrightTests, Run Parking.UI, copy the url and update the url in Setup method of PageTest classes in PlaywrightTests project.
+7. Open Powershell and go the PlaywrightTests directory and first run $env:HEADED="1" and then run dotnet test.  
     
 
