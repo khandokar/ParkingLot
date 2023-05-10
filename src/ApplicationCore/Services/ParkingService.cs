@@ -70,7 +70,7 @@ namespace ApplicationCore.Services
                     catch(Exception)
                     {
                         dbManager.RollbackTransaction();
-                        return false;
+                        throw;
                     }
 
                     return true;
