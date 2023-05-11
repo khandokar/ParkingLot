@@ -15,7 +15,7 @@ namespace Infrastructure.Data.AdoRepositories
             DbManager = dbManager;
         }
 
-        public virtual async Task AddAsync(ParkOut parkOut, CancellationToken cancellationToken = default)
+        public virtual async Task AddAsync(ParkOut parkOut, CancellationToken cancellationToken)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Infrastructure.Data.AdoRepositories
 
                 DbManager.CloseConnection();
             }
-            catch (SqlException e)
+            catch (SqlException)
             { 
                 //TODO: Log ErrorCode,SqlState,Errors,ClientConnectionId
                 throw; 
@@ -53,7 +53,7 @@ namespace Infrastructure.Data.AdoRepositories
             }
         }
 
-        public virtual async Task DeleteAsync(ParkOut parkOut, CancellationToken cancellationToken = default)
+        public virtual async Task DeleteAsync(ParkOut parkOut, CancellationToken cancellationToken)
         {  
             try
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.Data.AdoRepositories
                 await comm.ExecuteNonQueryAsync(cancellationToken);
                 DbManager.CloseConnection();
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
                 //TODO: Log ErrorCode,SqlState,Errors,ClientConnectionId
                 throw;
@@ -81,17 +81,17 @@ namespace Infrastructure.Data.AdoRepositories
             }
         }
 
-        public Task<List<ParkOut>> GetAllAsync(Specification<ParkOut>? specification, CancellationToken cancellationToken = default)
+        public Task<List<ParkOut>> GetAllAsync(Specification<ParkOut>? specification, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> AnyAsync(Specification<ParkOut>? specification, CancellationToken cancellationToken = default)
+        public Task<bool> AnyAsync(Specification<ParkOut>? specification, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> CountAsync(Specification<ParkOut>? specification, CancellationToken cancellationToken = default)
+        public Task<int> CountAsync(Specification<ParkOut>? specification, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

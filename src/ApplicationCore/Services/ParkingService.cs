@@ -123,7 +123,7 @@ namespace ApplicationCore.Services
         {
             try
             {
-                int totalCar = await parkInRepository.CountAsync(null);
+                int totalCar = await parkInRepository.CountAsync();
 
                 return maxSpot > totalCar;
             }
@@ -137,7 +137,7 @@ namespace ApplicationCore.Services
         {
             try
             {
-                int totalCar = await parkInRepository.CountAsync(null);
+                int totalCar = await parkInRepository.CountAsync();
 
                 return maxSpot - totalCar;
             }
@@ -151,7 +151,7 @@ namespace ApplicationCore.Services
         {
             try
             {
-                return await parkInRepository.GetAllAsync(null);
+                return await parkInRepository.GetAllAsync();
             }
             catch (Exception)
             {

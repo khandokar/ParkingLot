@@ -281,7 +281,7 @@ namespace UnitTests.Core.Services
         [TearDown]
         public void TearDown()
         {
-            service = null;
+            //service = null;
 
 
         }

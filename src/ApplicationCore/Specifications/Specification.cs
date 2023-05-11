@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Linq.Expressions;
 
 namespace ApplicationCore.Specifications
 {
@@ -10,9 +11,11 @@ namespace ApplicationCore.Specifications
 
         public int? Skip { get; set; }
 
-        public string OrderBy { get; set; }
+        public string? OrderBy { get; set; }
 
         public abstract List<SqlParameter> ToParameters();
+
+        public abstract Expression<Func<T, bool>> ToExpression();
 
 
     }

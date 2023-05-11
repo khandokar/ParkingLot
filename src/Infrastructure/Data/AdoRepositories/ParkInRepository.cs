@@ -16,7 +16,7 @@ namespace Infrastructure.Data.AdoRepositories
             DbManager = dbManager;
         }
 
-        public virtual async Task AddAsync(ParkIn parkIn, CancellationToken cancellationToken = default)
+        public virtual async Task AddAsync(ParkIn parkIn, CancellationToken cancellationToken)
         {  
             try
             {
@@ -48,7 +48,7 @@ namespace Infrastructure.Data.AdoRepositories
             }
         }
 
-        public virtual async Task DeleteAsync(ParkIn parkIn, CancellationToken cancellationToken = default)
+        public virtual async Task DeleteAsync(ParkIn parkIn, CancellationToken cancellationToken)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Infrastructure.Data.AdoRepositories
             }
         }
 
-        public virtual async Task<List<ParkIn>> GetAllAsync(Specification<ParkIn>? specification, CancellationToken cancellationToken = default)
+        public virtual async Task<List<ParkIn>> GetAllAsync(Specification<ParkIn>? specification, CancellationToken cancellationToken)
         {
             var parkIns = new List<ParkIn>();
             try
@@ -84,7 +84,7 @@ namespace Infrastructure.Data.AdoRepositories
                 SqlCommand comm = DbManager.CreateCommand();
                 comm.CommandText = "Select * FROM ParkIn ";
 
-                if (specification != null && specification.ToParameters().Any())
+                if (specification != default)
                 {
                     comm.CommandText += "Where ";
 
@@ -140,7 +140,7 @@ namespace Infrastructure.Data.AdoRepositories
             return parkIns;
         }
 
-        public virtual async Task<bool> AnyAsync(Specification<ParkIn>? specification, CancellationToken cancellationToken = default)
+        public virtual async Task<bool> AnyAsync(Specification<ParkIn>? specification, CancellationToken cancellationToken)
         {
             //nolock 
             bool isThereAny = false;
@@ -149,12 +149,13 @@ namespace Infrastructure.Data.AdoRepositories
             {
                 SqlCommand comm = DbManager.CreateCommand();
 
-                List<SqlParameter> parameters = specification.ToParameters();
-
+   
                 StringBuilder commandBuilder = new StringBuilder("SELECT CASE WHEN EXISTS (SELECT TOP 1 *  FROM ParkIn ");
 
-                if (!string.IsNullOrEmpty(specification.Where))
+                if (specification != default)
                 {
+                    List<SqlParameter> parameters = specification.ToParameters();
+
                     commandBuilder.Append("Where ");
 
                     commandBuilder.Append(specification.Where);
@@ -198,7 +199,7 @@ namespace Infrastructure.Data.AdoRepositories
             return isThereAny;
         }
 
-        public virtual async Task<int> CountAsync(Specification<ParkIn>? specification, CancellationToken cancellationToken = default)
+        public virtual async Task<int> CountAsync(Specification<ParkIn>? specification, CancellationToken cancellationToken)
         {
             int count = 0;
 
@@ -208,7 +209,7 @@ namespace Infrastructure.Data.AdoRepositories
 
                 StringBuilder commandBuilder = new StringBuilder("Select Count(*) FROM ParkIn ");
 
-                if (specification != null && specification.ToParameters().Any())
+                if (specification != default)
                 {
                     List<SqlParameter> parameters = specification.ToParameters();
 

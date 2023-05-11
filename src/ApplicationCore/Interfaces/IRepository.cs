@@ -10,10 +10,10 @@ namespace ApplicationCore.Interfaces
 
         public Task DeleteAsync(T t, CancellationToken cancellationToken = default);
 
-        public Task<List<T>> GetAllAsync(Specification<T>? specification, CancellationToken cancellationToken = default);
+        public Task<List<T>> GetAllAsync(Specification<T>? specification = default, CancellationToken cancellationToken = default);
 
-        public Task<bool> AnyAsync(Specification<T>? specification, CancellationToken cancellationToken = default);
+        public Task<bool> AnyAsync(Specification<T>? specification = default, CancellationToken cancellationToken = default);
 
-        public Task<int> CountAsync(Specification<T>? specification, CancellationToken cancellationToken = default);
+        public Task<int> CountAsync(Specification<T>? specification = default, CancellationToken cancellationToken = default);
     }
 }

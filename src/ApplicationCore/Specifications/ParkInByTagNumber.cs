@@ -1,21 +1,23 @@
 ﻿using ApplicationCore.Entities;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 
 namespace ApplicationCore.Specifications
 {
     public class ParkInByTagNumber : Specification<ParkIn>
     {
-        private string _tagNumber;
+        private string tagNumber;
 
         public ParkInByTagNumber(string tagNumber)
         {
-            _tagNumber = tagNumber;
+            this.tagNumber = tagNumber;
 
             Where = "TagNumber=@TagNumber";
 
             OrderBy = "Id";
         }
+
         public override List<SqlParameter> ToParameters()
         {
 
@@ -24,11 +26,16 @@ namespace ApplicationCore.Specifications
             SqlParameter tagNameParam = new SqlParameter();
             tagNameParam.SqlDbType = SqlDbType.VarChar;
             tagNameParam.ParameterName = "@TagNumber";
-            tagNameParam.Value = _tagNumber;
+            tagNameParam.Value = tagNumber;
 
             param.Add(tagNameParam);
 
             return param;
+        }
+
+        public override Expression<Func<ParkIn, bool>> ToExpression()
+        {
+            return pi => pi.TagNumber == tagNumber;
         }
     }
 }
