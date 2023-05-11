@@ -11,8 +11,6 @@
       document.getElementById("TagNumber").removeAttribute("disabled");
 
       var form = $('#frmInOut');
-      form.removeData("validator");
-      $.validator.unobtrusive.parse(form);
 
       if (form.valid() && form.data('validator').pendingRequest == 0) {
         var uri = baseUrl + "/Parking/In";
@@ -58,8 +56,6 @@
       }
 
       var form = $('#frmInOut');
-      form.removeData("validator");
-      $.validator.unobtrusive.parse(form);
 
       if (form.valid() && form.data('validator').pendingRequest == 0) {
 
