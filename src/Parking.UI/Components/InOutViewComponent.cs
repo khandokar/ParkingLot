@@ -35,12 +35,12 @@ namespace Parking.UI.ViewComponents
                 decimal minute = 0;
                 if (hour > 0)
                 {
-                    //minute = Math.Round(Convert.ToDecimal(timeSpan.TotalHours - hour) * 100, 0);
                     minute = timeSpan.Minutes;
                 }
                 else
                 {
                     minute = Math.Round(Convert.ToDecimal(timeSpan.TotalMinutes));
+
                 }
 
                 this.inOutViewModel.ElaspedTime = string.Format("{0} hr {1} min", hour, minute);

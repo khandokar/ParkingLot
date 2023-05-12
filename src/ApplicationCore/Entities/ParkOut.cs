@@ -37,7 +37,7 @@
                 minute = Math.Round(Convert.ToDecimal(diff.TotalMinutes));
             }
 
-            ElaspedTime = Convert.ToDecimal(Math.Round (hour + minute / 100,2));
+            ElaspedTime = Convert.ToDecimal(Math.Round(hour + minute / 100,2));
 
             Total = total;
 
