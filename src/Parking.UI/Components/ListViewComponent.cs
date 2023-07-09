@@ -12,7 +12,7 @@ namespace Parking.UI.Components
         public ListViewComponent(IParkingService parkingService, IConfiguration config)
         {
             this.parkingService = parkingService;
-            this.config = config;
+            this.config = config; 
         }
 
         public IViewComponentResult Invoke()
