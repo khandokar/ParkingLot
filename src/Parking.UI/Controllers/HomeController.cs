@@ -16,7 +16,7 @@ namespace Parking.UI.Controllers
 
         public IActionResult Index()
         {
-           
+           // Default Page
             return View();
         }
 
